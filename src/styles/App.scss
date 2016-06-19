@@ -1,14 +1,17 @@
 $size: 100px;
 $translate: translateZ(50px);
 
-.wrapper {
-  perspective: 500px;
+.scene {
   position: absolute;
-  top: 25%;
+  top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  perspective-origin: 70% 20%;
+}
 
+.controls {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
 }
 
 .cube {
