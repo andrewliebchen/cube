@@ -12,6 +12,7 @@ class Scene extends Component {
       top: `${panHorizon}%`,
       left: `${panX}%`
     };
+    // Horizon angle gets messed up when orbitX is set > 0
     const horizonStyle = {
       top: `${panHorizon + orbitHorizon - 50}%`,
       transform: `rotate(${orbitY}deg)`
