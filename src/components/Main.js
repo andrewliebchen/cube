@@ -3,41 +3,68 @@ import React, { Component } from 'react';
 require('normalize.css/normalize.css');
 require('styles/App.scss');
 
+class Control extends Component {
+  render() {
+    const { label, value, action, min, max } = this.props;
+    return (
+      <div className="control">
+        <label>{label}</label>
+        <input
+          type="range"
+          value={value}
+          onChange={action}
+          min={min}
+          max={max}/>
+        <input
+          type="number"
+          value={value}
+          onChange={action}
+          min={min}
+          max={max}/>
+      </div>
+    );
+  }
+}
+
 export default class AppComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       zoom: 500,
-      xOffset: 50,
-      yOffset: 50,
-      zAngle: 0
+      panX: 50,
+      panY: 50,
+      zAngle: 0,
+      orbitX: 0,
+      orbitY: 0
     };
     this.handleZoom = this.handleZoom.bind(this);
-    this.handleXOffset = this.handleXOffset.bind(this);
-    this.handleYOffset = this.handleYOffset.bind(this);
+    this.handlePanX = this.handlePanX.bind(this);
+    this.handlePanY = this.handlePanY.bind(this);
     this.handleRotate = this.handleRotate.bind(this);
     this.handleOrbitX = this.handleOrbitX.bind(this);
     this.handleOrbitY = this.handleOrbitY.bind(this);
   }
 
   render() {
-    const { zoom, xOffset, yOffset, zAngle, orbitX, orbitY } = this.state;
-    const horizon = `${100 - yOffset}%`;
+    const { zoom, panX, panY, zAngle, orbitX, orbitY } = this.state;
+    const orbitHorizon = (100 - orbitX / 180 * 100) - 50;
+    const panHorizon = 100 - panY;
+    console.log();
     return (
       <div className="wrapper">
         <div
           className="scene"
           style={{
             perspective: `${zoom}px`,
-            perspectiveOrigin: `${xOffset}% ${yOffset}%`,
-            top: horizon,
-            left: `${xOffset}%`,
+            perspectiveOrigin: `${panX}% ${panY}%`,
+            top: `${panHorizon}%`,
+            left: `${panX}%`,
             orbitX: 0,
             orbitY: 0
           }}>
           <div
             className="cube"
-            style={{transform: `rotateX(${orbitX}deg) rotateY(${zAngle}deg) rotateZ(${orbitY}deg)`}}>
+            style={{transform: `rotateX(-${orbitX}deg) rotateY(${zAngle}deg) rotateZ(${orbitY}deg)`}}>
             <div className="face front"/>
             <div className="face back"/>
             <div className="face left"/>
@@ -47,62 +74,44 @@ export default class AppComponent extends Component {
           </div>
         </div>
         <div className="controls">
-          <div>
-            <label>Zoom</label>
-            <input
-              type="range"
-              defaultValue={zoom}
-              onChange={this.handleZoom}
-              min="100"
-              max="1000"/>
-          </div>
-          <div>
-            <label>X-axis offset</label>
-            <input
-              type="range"
-              defaultValue={xOffset}
-              onChange={this.handleXOffset}
-              min="0"
-              max="100"/>
-          </div>
-          <div>
-            <label>Horizon height</label>
-            <input
-              type="range"
-              defaultValue={yOffset}
-              onChange={this.handleYOffset}
-              min="0"
-              max="100"/>
-          </div>
-          <div>
-            <label>Rotate</label>
-            <input
-              type="range"
-              defaultValue={zAngle}
-              onChange={this.handleRotate}
-              min="0"
-              max="360"/>
-          </div>
-          <div>
-            <label>Orbit X</label>
-            <input
-              type="range"
-              defaultValue={orbitX}
-              onChange={this.handleOrbitX}
-              min="0"
-              max="360"/>
-          </div>
-          <div>
-            <label>Orbit Y</label>
-            <input
-              type="range"
-              defaultValue={orbitY}
-              onChange={this.handleOrbitY}
-              min="0"
-              max="360"/>
-          </div>
+          <Control
+            label="Zoom"
+            value={zoom}
+            action={this.handleZoom}
+            min="100"
+            max="1000"/>
+          <Control
+            label="Pan X"
+            value={panX}
+            action={this.handlePanX}
+            min="0"
+            max="100"/>
+          <Control
+            label="Pan Y"
+            value={panY}
+            action={this.handlePanY}
+            min="0"
+            max="100"/>
+          <Control
+            label="Rotate"
+            value={zAngle}
+            action={this.handleRotate}
+            min="0"
+            max="360"/>
+          <Control
+            label="Orbit X"
+            value={orbitX}
+            action={this.handleOrbitX}
+            min="0"
+            max="90"/>
+          <Control
+            label="Orbit Y"
+            value={orbitY}
+            action={this.handleOrbitY}
+            min="0"
+            max="360"/>
         </div>
-        <div className="horizon" style={{top: horizon}}/>
+        <div className="horizon" style={{top: `${Math.min(panHorizon, orbitHorizon)}%`}}/>
       </div>
     );
   }
@@ -111,12 +120,12 @@ export default class AppComponent extends Component {
     this.setState({zoom: event.target.value});
   }
 
-  handleXOffset(event) {
-    this.setState({xOffset: event.target.value});
+  handlePanX(event) {
+    this.setState({panX: event.target.value});
   }
 
-  handleYOffset(event) {
-    this.setState({yOffset: event.target.value});
+  handlePanY(event) {
+    this.setState({panY: event.target.value});
   }
 
   handleRotate(event) {
