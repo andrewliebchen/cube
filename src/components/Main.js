@@ -3,6 +3,43 @@ import React, { Component } from 'react';
 require('normalize.css/normalize.css');
 require('styles/App.scss');
 
+class Scene extends Component {
+  render() {
+    const { children, zoom, panX, panY, panHorizon} = this.props;
+    const sceneStyle = {
+      perspective: `${zoom}px`,
+      perspectiveOrigin: `${panX}% ${panY}%`,
+      top: `${panHorizon}%`,
+      left: `${panX}%`
+    };
+    return (
+      <div
+        className="scene"
+        style={sceneStyle}>
+        {children}
+      </div>
+    );
+  }
+}
+
+class Cube extends Component {
+  render() {
+    const { orbitX, orbitY, zAngle} = this.props;
+    return (
+      <div
+        className="cube"
+        style={{transform: `rotateX(-${orbitX}deg) rotateY(${zAngle}deg) rotateZ(${orbitY}deg)`}}>
+        <div className="face front"/>
+        <div className="face back"/>
+        <div className="face left"/>
+        <div className="face right"/>
+        <div className="face top"/>
+        <div className="face bottom"/>
+      </div>
+    );
+  }
+}
+
 class Control extends Component {
   render() {
     const { label, value, action, min, max } = this.props;
@@ -49,30 +86,11 @@ export default class AppComponent extends Component {
     const { zoom, panX, panY, zAngle, orbitX, orbitY } = this.state;
     const orbitHorizon = (100 - orbitX / 180 * 100) - 50;
     const panHorizon = 100 - panY;
-    console.log();
     return (
       <div className="wrapper">
-        <div
-          className="scene"
-          style={{
-            perspective: `${zoom}px`,
-            perspectiveOrigin: `${panX}% ${panY}%`,
-            top: `${panHorizon}%`,
-            left: `${panX}%`,
-            orbitX: 0,
-            orbitY: 0
-          }}>
-          <div
-            className="cube"
-            style={{transform: `rotateX(-${orbitX}deg) rotateY(${zAngle}deg) rotateZ(${orbitY}deg)`}}>
-            <div className="face front"/>
-            <div className="face back"/>
-            <div className="face left"/>
-            <div className="face right"/>
-            <div className="face top"/>
-            <div className="face bottom"/>
-          </div>
-        </div>
+        <Scene zoom={zoom} panX={panX} panY={panY} panHorizon={panHorizon}>
+          <Cube orbitX={orbitX} orbitY={orbitY} zAngle={zAngle}/>
+        </Scene>
         <div className="controls">
           <Control
             label="Zoom"
@@ -111,7 +129,7 @@ export default class AppComponent extends Component {
             min="0"
             max="360"/>
         </div>
-        <div className="horizon" style={{top: `${Math.min(panHorizon, orbitHorizon)}%`}}/>
+        <div className="horizon" style={{top: `${panHorizon + orbitHorizon - 50}%`}}/>
       </div>
     );
   }

@@ -21,9 +21,14 @@ $translate: translateZ(50px);
   position: absolute;
   bottom: 1rem;
   left: 1rem;
+}
+
+.control {
+  user-select: none;
 
   label {
     display: block;
+    font-size: 0.75rem;
   }
 }
 
