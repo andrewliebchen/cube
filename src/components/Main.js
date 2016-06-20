@@ -5,19 +5,26 @@ require('styles/App.scss');
 
 class Scene extends Component {
   render() {
-    const { children, zoom, panX, panY, panHorizon} = this.props;
+    const { children, zoom, panX, panY, panHorizon, orbitHorizon, orbitY} = this.props;
     const sceneStyle = {
       perspective: `${zoom}px`,
       perspectiveOrigin: `${panX}% ${panY}%`,
       top: `${panHorizon}%`,
       left: `${panX}%`
     };
+    const horizonStyle = {
+      top: `${panHorizon + orbitHorizon - 50}%`,
+      transform: `rotate(${orbitY}deg)`
+    };
     return (
-      <div
-        className="scene"
-        style={sceneStyle}>
-        {children}
-      </div>
+      <span>
+        <div
+          className="scene"
+          style={sceneStyle}>
+          {children}
+        </div>
+        <div className="horizon" style={horizonStyle}/>
+      </span>
     );
   }
 }
@@ -88,8 +95,17 @@ export default class AppComponent extends Component {
     const panHorizon = 100 - panY;
     return (
       <div className="wrapper">
-        <Scene zoom={zoom} panX={panX} panY={panY} panHorizon={panHorizon}>
-          <Cube orbitX={orbitX} orbitY={orbitY} zAngle={zAngle}/>
+        <Scene
+          zoom={zoom}
+          panX={panX}
+          panY={panY}
+          panHorizon={panHorizon}
+          orbitHorizon={orbitHorizon}
+          orbitY={orbitY}>
+          <Cube
+            orbitX={orbitX}
+            orbitY={orbitY}
+            zAngle={zAngle}/>
         </Scene>
         <div className="controls">
           <Control
@@ -129,7 +145,6 @@ export default class AppComponent extends Component {
             min="0"
             max="360"/>
         </div>
-        <div className="horizon" style={{top: `${panHorizon + orbitHorizon - 50}%`}}/>
       </div>
     );
   }
