@@ -9,15 +9,20 @@ export default class AppComponent extends Component {
     this.state = {
       zoom: 500,
       xOffset: 50,
-      yOffset: 50
+      yOffset: 50,
+      zAngle: 0
     };
     this.handleZoom = this.handleZoom.bind(this);
     this.handleXOffset = this.handleXOffset.bind(this);
     this.handleYOffset = this.handleYOffset.bind(this);
+    this.handleRotate = this.handleRotate.bind(this);
+    this.handleOrbitX = this.handleOrbitX.bind(this);
+    this.handleOrbitY = this.handleOrbitY.bind(this);
   }
 
   render() {
-    const { zoom, xOffset, yOffset } = this.state;
+    const { zoom, xOffset, yOffset, zAngle, orbitX, orbitY } = this.state;
+    const horizon = `${100 - yOffset}%`;
     return (
       <div className="wrapper">
         <div
@@ -25,11 +30,14 @@ export default class AppComponent extends Component {
           style={{
             perspective: `${zoom}px`,
             perspectiveOrigin: `${xOffset}% ${yOffset}%`,
-            top: `${100 - yOffset}%`,
-            left: `${xOffset}%`
+            top: horizon,
+            left: `${xOffset}%`,
+            orbitX: 0,
+            orbitY: 0
           }}>
           <div
-            className="cube">
+            className="cube"
+            style={{transform: `rotateX(${orbitX}deg) rotateY(${zAngle}deg) rotateZ(${orbitY}deg)`}}>
             <div className="face front"/>
             <div className="face back"/>
             <div className="face left"/>
@@ -66,7 +74,35 @@ export default class AppComponent extends Component {
               min="0"
               max="100"/>
           </div>
+          <div>
+            <label>Rotate</label>
+            <input
+              type="range"
+              defaultValue={zAngle}
+              onChange={this.handleRotate}
+              min="0"
+              max="360"/>
+          </div>
+          <div>
+            <label>Orbit X</label>
+            <input
+              type="range"
+              defaultValue={orbitX}
+              onChange={this.handleOrbitX}
+              min="0"
+              max="360"/>
+          </div>
+          <div>
+            <label>Orbit Y</label>
+            <input
+              type="range"
+              defaultValue={orbitY}
+              onChange={this.handleOrbitY}
+              min="0"
+              max="360"/>
+          </div>
         </div>
+        <div className="horizon" style={{top: horizon}}/>
       </div>
     );
   }
@@ -81,6 +117,18 @@ export default class AppComponent extends Component {
 
   handleYOffset(event) {
     this.setState({yOffset: event.target.value});
+  }
+
+  handleRotate(event) {
+    this.setState({zAngle: event.target.value});
+  }
+
+  handleOrbitX(event) {
+    this.setState({orbitX: event.target.value});
+  }
+
+  handleOrbitY(event) {
+    this.setState({orbitY: event.target.value});
   }
 }
 

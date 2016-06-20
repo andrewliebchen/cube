@@ -8,10 +8,23 @@ $translate: translateZ(50px);
   transform: translate3d(-50%, -50%, 0);
 }
 
+.horizon {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #f7f7f7;
+  z-index: -1;
+}
+
 .controls {
   position: absolute;
   bottom: 1rem;
   left: 1rem;
+
+  label {
+    display: block;
+  }
 }
 
 .cube {
@@ -19,12 +32,15 @@ $translate: translateZ(50px);
   position: relative;
   height: $size;
   width: $size;
+  transform-style: preserve-3d;
 }
 
 .face {
   position: absolute;
   height: $size;
   width: $size;
+  // top: 0;
+  // left: 0;
   // mix-blend-mode: multiply;
 }
 
