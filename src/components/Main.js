@@ -82,12 +82,6 @@ export default class AppComponent extends Component {
       orbitX: 0,
       orbitY: 0
     };
-    this.handleZoom = this.handleZoom.bind(this);
-    this.handlePanX = this.handlePanX.bind(this);
-    this.handlePanY = this.handlePanY.bind(this);
-    this.handleRotate = this.handleRotate.bind(this);
-    this.handleOrbitX = this.handleOrbitX.bind(this);
-    this.handleOrbitY = this.handleOrbitY.bind(this);
   }
 
   render() {
@@ -150,27 +144,27 @@ export default class AppComponent extends Component {
     );
   }
 
-  handleZoom(event) {
+  handleZoom = (event) => {
     this.setState({zoom: event.target.value});
   }
 
-  handlePanX(event) {
+  handlePanX = (event) => {
     this.setState({panX: event.target.value});
   }
 
-  handlePanY(event) {
+  handlePanY = (event) => {
     this.setState({panY: event.target.value});
   }
 
-  handleRotate(event) {
+  handleRotate = (event) => {
     this.setState({zAngle: event.target.value});
   }
 
-  handleOrbitX(event) {
+  handleOrbitX = (event) => {
     this.setState({orbitX: event.target.value});
   }
 
-  handleOrbitY(event) {
+  handleOrbitY = (event) => {
     this.setState({orbitY: event.target.value});
   }
 }
