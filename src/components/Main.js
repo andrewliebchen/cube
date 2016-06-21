@@ -106,37 +106,37 @@ export default class AppComponent extends Component {
           <Control
             label="Zoom"
             value={zoom}
-            action={this.handleZoom}
+            action={this.handleControlAction.bind(null, 'zoom')}
             min="100"
             max="1000"/>
           <Control
             label="Pan X"
             value={panX}
-            action={this.handlePanX}
+            action={this.handleControlAction.bind(null, 'panX')}
             min="0"
             max="100"/>
           <Control
             label="Pan Y"
             value={panY}
-            action={this.handlePanY}
+            action={this.handleControlAction.bind(null, 'panY')}
             min="0"
             max="100"/>
           <Control
             label="Rotate"
             value={zAngle}
-            action={this.handleRotate}
+            action={this.handleControlAction.bind(null, 'rotate')}
             min="0"
             max="360"/>
           <Control
             label="Orbit X"
             value={orbitX}
-            action={this.handleOrbitX}
+            action={this.handleControlAction.bind(null, 'orbitX')}
             min="0"
             max="90"/>
           <Control
             label="Orbit Y"
             value={orbitY}
-            action={this.handleOrbitY}
+            action={this.handleControlAction.bind(null, 'orbitY')}
             min="0"
             max="360"/>
         </div>
@@ -144,30 +144,35 @@ export default class AppComponent extends Component {
     );
   }
 
-  handleZoom = (event) => {
-    this.setState({zoom: event.target.value});
-  }
+  handleControlAction = (action, event) => {
+    switch (action) {
+      case 'zoom':
+        this.setState({zoom: event.target.value});
+        break;
 
-  handlePanX = (event) => {
-    this.setState({panX: event.target.value});
-  }
+      case 'panX':
+        this.setState({panX: event.target.value});
+        break;
 
-  handlePanY = (event) => {
-    this.setState({panY: event.target.value});
-  }
+      case 'panY':
+        this.setState({panY: event.target.value});
+        break;
 
-  handleRotate = (event) => {
-    this.setState({zAngle: event.target.value});
-  }
+      case 'rotate':
+        this.setState({zAngle: event.target.value});
+        break;
 
-  handleOrbitX = (event) => {
-    this.setState({orbitX: event.target.value});
-  }
+      case 'orbitX':
+        this.setState({orbitX: event.target.value});
+        break;
 
-  handleOrbitY = (event) => {
-    this.setState({orbitY: event.target.value});
+      case 'orbitY':
+        this.setState({orbitY: event.target.value});
+        break;
+
+      default:
+        this.setState(this.state);
+        break;
+    }
   }
 }
-
-AppComponent.defaultProps = {
-};
