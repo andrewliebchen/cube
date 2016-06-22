@@ -4,7 +4,7 @@ import Cube from './Cube';
 import Control from './Control';
 import styles from '../styles/Main.scss';
 
-export default class AppComponent extends Component {
+export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,29 +72,31 @@ export default class AppComponent extends Component {
   }
 
   handleControlAction = (action, event) => {
+    const newValue = parseInt(event.target.value);
+
     switch (action) {
       case 'zoom':
-        this.setState({zoom: event.target.value});
+        this.setState({zoom: newValue});
         break;
 
       case 'panX':
-        this.setState({panX: event.target.value});
+        this.setState({panX: newValue});
         break;
 
       case 'panY':
-        this.setState({panY: event.target.value});
+        this.setState({panY: newValue});
         break;
 
       case 'rotate':
-        this.setState({zAngle: event.target.value});
+        this.setState({zAngle: newValue});
         break;
 
       case 'orbitX':
-        this.setState({orbitX: event.target.value});
+        this.setState({orbitX: newValue});
         break;
 
       case 'orbitY':
-        this.setState({orbitY: event.target.value});
+        this.setState({orbitY: newValue});
         break;
 
       default:
