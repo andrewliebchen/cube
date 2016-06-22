@@ -1,45 +1,6 @@
 $size: 100px;
 $translate: translateZ(50px);
 
-.wrapper {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-}
-
-.scene {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-}
-
-.horizon {
-  $offset: -99999px;
-  position: fixed;
-  left: $offset;
-  right: $offset;
-  bottom: $offset;
-  background-color: #f7f7f7;
-  z-index: -1;
-  transform-origin: top center;
-}
-
-.controls {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-}
-
-.control {
-  user-select: none;
-
-  label {
-    display: block;
-    font-size: 0.75rem;
-  }
-}
-
 .cube {
   backface-visibility: visible;
   position: relative;
@@ -52,37 +13,40 @@ $translate: translateZ(50px);
   position: absolute;
   height: $size;
   width: $size;
-  // top: 0;
-  // left: 0;
-  // mix-blend-mode: multiply;
 }
 
-.front {
+.frontFace {
+  composes: face;
   background-color: rgba(red, 0.5);
   transform: rotateY(0deg) $translate;
 }
 
-.back {
+.backFace {
+  composes: face;
   background-color: rgba(blue, 0.5);
   transform: rotateX(180deg) $translate;
 }
 
-.left {
+.leftFace {
+  composes: face;
   background-color: rgba(cyan, 0.5);
   transform: rotateY(90deg) $translate;
 }
 
-.right {
+.rightFace {
+  composes: face;
   background-color: rgba(magenta, 0.5);
   transform: rotateY(-90deg) $translate;
 }
 
-.top {
+.topFace {
+  composes: face;
   background-color: rgba(orange, 0.5);
   transform: rotateX(90deg) $translate;
 }
 
-.bottom {
+.bottomFace {
+  composes: face;
   background-color: rgba(yellow, 0.5);
   transform: rotateX(-90deg) $translate;
 }

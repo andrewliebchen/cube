@@ -1,15 +1,16 @@
 import React, { PropTypes } from 'react';
+import styles from '../styles/Cube.scss';
 
 const Cube = (props) =>
   <div
-    className="cube"
+    className={styles.cube}
     style={{transform: `rotateX(-${props.orbitX}deg) rotateY(${props.zAngle}deg) rotateZ(${props.orbitY}deg)`}}>
-    <div className="face front"/>
-    <div className="face back"/>
-    <div className="face left"/>
-    <div className="face right"/>
-    <div className="face top"/>
-    <div className="face bottom"/>
+    <div className={styles.frontFace}/>
+    <div className={styles.backFace}/>
+    <div className={styles.leftFace}/>
+    <div className={styles.rightFace}/>
+    <div className={styles.topFace}/>
+    <div className={styles.bottomFace}/>
   </div>
 
 Cube.propTypes = {

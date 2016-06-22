@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
-
+import styles from '../styles/Control.scss';
 
 const Control = (props) =>
-  <div className="control">
-    <label>{props.label}</label>
+  <div className={styles.control}>
+    <label className={styles.label}>{props.label}</label>
     <input
       type="range"
       value={props.value}

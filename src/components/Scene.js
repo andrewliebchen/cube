@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
+import styles from '../styles/Scene.scss';
 
 // Horizon angle gets messed up when orbitX is set > 90 < 270...breaks the horizon illusion
 const Scene = (props) =>
   <span>
     <div
-      className="scene"
+      className={styles.scene}
       style={{
         perspective: `${props.zoom}px`,
         perspectiveOrigin: `${props.panX}% ${props.panY}%`,
@@ -14,7 +15,7 @@ const Scene = (props) =>
       {props.children}
     </div>
     <div
-      className="horizon"
+      className={styles.horizon}
       style={{
         top: `${props.panHorizon + props.orbitHorizon - 50}%`,
         transform: `rotate(${props.orbitY}deg)`,

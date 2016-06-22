@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import Scene from './Scene';
 import Cube from './Cube';
 import Control from './Control';
-
-require('normalize.css/normalize.css');
-require('styles/App.scss');
+import styles from '../styles/Main.scss';
 
 export default class AppComponent extends Component {
   constructor(props) {
@@ -24,14 +22,14 @@ export default class AppComponent extends Component {
     const orbitHorizon = (100 - orbitX / 180 * 100) - 50;
     const panHorizon = 100 - panY;
     return (
-      <div className="wrapper">
+      <div className={styles.wrapper}>
         <Scene
           {...this.state}
           panHorizon={panHorizon}
           orbitHorizon={orbitHorizon}>
           <Cube {...this.state}/>
         </Scene>
-        <div className="controls">
+        <div className={styles.controls}>
           <Control
             label="Zoom"
             value={zoom}

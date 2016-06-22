@@ -16,20 +16,13 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!postcss-loader'
       },
       {
-        test: /\.sass/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded&indentedSyntax'
-      },
-      {
         test: /\.scss/,
-        loader: 'style-loader!css-loader!postcss-loader!sass-loader?outputStyle=expanded'
-      },
-      {
-        test: /\.less/,
-        loader: 'style-loader!css-loader!postcss-loader!less-loader'
-      },
-      {
-        test: /\.styl/,
-        loader: 'style-loader!css-loader!postcss-loader!stylus-loader'
+        loaders: [
+          'style',
+          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'sass',
+          'postcss'
+        ]
       },
       {
         test: /\.(png|jpg|gif|woff|woff2)$/,
