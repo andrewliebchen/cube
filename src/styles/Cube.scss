@@ -1,12 +1,38 @@
 $size: 100px;
 $translate: translateZ(50px);
+$anaglyphOffset: 50px;
+
+.cubes {
+
+}
+
+.anaglyphContainer {
+  position: relative;
+  -webkit-mix-blend-mode: multiply;
+}
+
+.anaglyphLeft {
+  composes: anaglyphContainer;
+  margin-left: -($anaglyphOffset);
+}
+
+.anaglyphRight {
+  composes: anaglyphContainer;
+  margin-left: $anaglyphOffset;
+}
 
 .cube {
   backface-visibility: visible;
-  position: relative;
+  position: absolute;
   height: $size;
   width: $size;
   transform-style: preserve-3d;
+  top: 50%;
+  left: 50%;
+}
+
+.anaglyphCube {
+  composes: cube;
 }
 
 .face {

@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import styles from '../styles/Cube.scss';
 
-const Cube = (props) =>
+const Primative = (props) =>
   <div
-    className={styles.cube}
-    style={{transform: `rotateX(-${props.orbitX}deg) rotateY(${props.zAngle}deg) rotateZ(${props.orbitY}deg)`}}>
+    className={props.anaglyph ? styles.anaglyphCube : styles.cube}
+    style={{transform: `translate3d(-50%, -50%, 0) rotateX(-${props.orbitX}deg) rotateY(${props.zAngle}deg) rotateZ(${props.orbitY}deg)`}}>
     <div className={styles.frontFace}/>
     <div className={styles.backFace}/>
     <div className={styles.leftFace}/>
@@ -13,10 +13,22 @@ const Cube = (props) =>
     <div className={styles.bottomFace}/>
   </div>
 
+const Cube = (props) =>
+  <div className={styles.cubes}>
+    <div className={props.anaglyph && styles.anaglyphLeft}>
+      <Primative {...props}/>
+    </div>
+    {props.anaglyph &&
+      <div className={props.anaglyph && styles.anaglyphRight}>
+        <Primative {...props}/>
+      </div>}
+  </div>
+
 Cube.propTypes = {
   orbitX: PropTypes.number,
   zAngle: PropTypes.number,
-  orbitY: PropTypes.number
+  orbitY: PropTypes.number,
+  anaglyph: PropTypes.bool
 };
 
 export default Cube;
