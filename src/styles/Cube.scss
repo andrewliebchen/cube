@@ -39,40 +39,35 @@ $anaglyphOffset: 50px;
   position: absolute;
   height: $size;
   width: $size;
+  border: 2px solid;
 }
 
 .frontFace {
   composes: face;
-  background-color: rgba(red, 0.5);
   transform: rotateY(0deg) $translate;
 }
 
 .backFace {
   composes: face;
-  background-color: rgba(blue, 0.5);
   transform: rotateX(180deg) $translate;
 }
 
 .leftFace {
   composes: face;
-  background-color: rgba(cyan, 0.5);
   transform: rotateY(90deg) $translate;
 }
 
 .rightFace {
   composes: face;
-  background-color: rgba(magenta, 0.5);
   transform: rotateY(-90deg) $translate;
 }
 
 .topFace {
   composes: face;
-  background-color: rgba(orange, 0.5);
   transform: rotateX(90deg) $translate;
 }
 
 .bottomFace {
   composes: face;
-  background-color: rgba(yellow, 0.5);
   transform: rotateX(-90deg) $translate;
 }
