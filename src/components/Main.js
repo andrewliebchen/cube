@@ -29,44 +29,46 @@ export default class Main extends Component {
           orbitHorizon={orbitHorizon}>
           <Cube {...this.state}/>
         </Scene>
-        <div className={styles.controls}>
-          <Control
-            label="Zoom"
-            value={zoom}
-            action={this.handleControlAction.bind(null, 'zoom')}
-            min={100}
-            max={1000}/>
-          <Control
-            label="Pan X"
-            value={panX}
-            action={this.handleControlAction.bind(null, 'panX')}
-            min={0}
-            max={100}/>
-          <Control
-            label="Pan Y"
-            value={panY}
-            action={this.handleControlAction.bind(null, 'panY')}
-            min={0}
-            max={100}/>
-          <Control
-            label="Rotate"
-            value={zAngle}
-            action={this.handleControlAction.bind(null, 'rotate')}
-            min={0}
-            max={360}/>
-          <Control
-            label="Orbit X"
-            value={orbitX}
-            action={this.handleControlAction.bind(null, 'orbitX')}
-            min={0}
-            max={90}/>
-          <Control
-            label="Orbit Y"
-            value={orbitY}
-            action={this.handleControlAction.bind(null, 'orbitY')}
-            min={0}
-            max={360}/>
-        </div>
+        <table className={styles.controls}>
+          <tbody>
+            <Control
+              label="Zoom"
+              value={zoom}
+              action={this.handleControlAction.bind(null, 'zoom')}
+              min={100}
+              max={1000}/>
+            <Control
+              label="Pan X"
+              value={panX}
+              action={this.handleControlAction.bind(null, 'panX')}
+              min={0}
+              max={100}/>
+            <Control
+              label="Pan Y"
+              value={panY}
+              action={this.handleControlAction.bind(null, 'panY')}
+              min={0}
+              max={100}/>
+            <Control
+              label="Rotate"
+              value={zAngle}
+              action={this.handleControlAction.bind(null, 'rotate')}
+              min={0}
+              max={360}/>
+            <Control
+              label="Orbit X"
+              value={orbitX}
+              action={this.handleControlAction.bind(null, 'orbitX')}
+              min={0}
+              max={90}/>
+            <Control
+              label="Orbit Y"
+              value={orbitY}
+              action={this.handleControlAction.bind(null, 'orbitY')}
+              min={0}
+              max={360}/>
+          </tbody>
+        </table>
       </div>
     );
   }
