@@ -2,10 +2,6 @@ $size: 100px;
 $translate: translateZ(50px);
 $anaglyphOffset: 50px;
 
-.cubes {
-
-}
-
 .anaglyphContainer {
   position: relative;
 }
@@ -28,10 +24,6 @@ $anaglyphOffset: 50px;
   transform-style: preserve-3d;
   top: 50%;
   left: 50%;
-}
-
-.anaglyphCube {
-  composes: cube;
   border-color: inherit;
   -webkit-mix-blend-mode: multiply;
 }

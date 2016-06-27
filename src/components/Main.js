@@ -13,13 +13,12 @@ export default class Main extends Component {
       panY: 50,
       zAngle: 0,
       orbitX: 0,
-      orbitY: 0,
-      anaglyph: false
+      orbitY: 0
     };
   }
 
   render() {
-    const { zoom, panX, panY, zAngle, orbitX, orbitY, anaglyph } = this.state;
+    const { zoom, panX, panY, zAngle, orbitX, orbitY } = this.state;
     const orbitHorizon = (100 - orbitX / 180 * 100) - 50;
     const panHorizon = 100 - panY;
     return (
@@ -67,9 +66,6 @@ export default class Main extends Component {
             action={this.handleControlAction.bind(null, 'orbitY')}
             min={0}
             max={360}/>
-          <button onClick={this.toggleAnaglyph}>
-            Anaglyph {anaglyph ? 'on' : 'off'}
-          </button>
         </div>
       </div>
     );
@@ -107,9 +103,5 @@ export default class Main extends Component {
         this.setState({...this.state});
         break;
     }
-  }
-
-  toggleAnaglyph = () => {
-    this.setState({anaglyph: !this.state.anaglyph})
   }
 }

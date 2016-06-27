@@ -2,14 +2,13 @@ import React, { PropTypes } from 'react';
 import styles from '../styles/Cube.scss';
 
 const Primative = (props) => {
-  const className = props.anaglyph ? styles.anaglyphCube : styles.cube;
   const rotateX = `rotateX(-${props.orbitX}deg)`;
   const rotateY = `rotateY(${props.zAngle + props.anaglyphRotate}deg)`;
   const rotateZ = `rotateZ(${props.orbitY}deg)`;
 
   return (
     <div
-      className={className}
+      className={styles.cube}
       style={{transform: `translate3d(-50%, -50%, 0) ${rotateX} ${rotateY} ${rotateZ}`}}>
       <div className={styles.frontFace}/>
       <div className={styles.backFace}/>
@@ -25,18 +24,17 @@ const Primative = (props) => {
 const Cube = (props) => {
   const interaxial = props.zoom / 30;
   const anaglyphRotate = Math.atan(props.zoom / interaxial);
-  // const zoom = props.zoom / 500;
 
   return (
     <div className={styles.cubes}>
       <div
-        className={props.anaglyph && styles.anaglyphLeft}
+        className={styles.anaglyphLeft}
         style={{marginLeft: `-${interaxial}px`}}>
         <Primative {...props} anaglyphRotate={anaglyphRotate}/>
       </div>
       {props.anaglyph &&
         <div
-          className={props.anaglyph && styles.anaglyphRight}
+          className={styles.anaglyphRight}
           style={{marginLeft: `${interaxial}px`}}>
           <Primative {...props}  anaglyphRotate={anaglyphRotate * -1}/>
         </div>}
