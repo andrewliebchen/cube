@@ -8,7 +8,7 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      zoom: 500,
+      zoom: 1100,
       panX: 50,
       panY: 50,
       zAngle: 0,
@@ -35,8 +35,8 @@ export default class Main extends Component {
               label="Zoom"
               value={zoom}
               action={this.handleControlAction.bind(null, 'zoom')}
-              min={100}
-              max={1000}/>
+              min={200}
+              max={2000}/>
             <Control
               label="Pan X"
               value={panX}

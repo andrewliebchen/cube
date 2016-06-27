@@ -11,11 +11,15 @@
   display: inline-block;
 }
 
+.rangeCell {
+  position: relative;
+}
+
 .range {
   appearance: none;
-  position: relative;
+  position: absolute;
   outline: none;
-  // display: none;
+  top: 50%;
 
   &::-webkit-slider-thumb {
     $size: 1rem;

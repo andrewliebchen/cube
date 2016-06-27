@@ -15,11 +15,11 @@ const Control = (props) =>
         min={props.min}
         max={props.max}/>
     </td>
-    <td>
+    <td className={styles.rangeCell}>
       <input
         type="range"
         className={styles.range}
-        value={props.value}
+        defaultValue={props.value}
         onChange={props.action}
         min={props.min}
         max={props.max}/>
