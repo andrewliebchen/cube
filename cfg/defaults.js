@@ -1,6 +1,5 @@
 'use strict';
 const path = require('path');
-const autoprefixer = require('autoprefixer');
 const srcPath = path.join(__dirname, '/../src');
 const dfltPort = 8000;
 function getDefaultModules() {
@@ -39,8 +38,5 @@ module.exports = {
   srcPath: srcPath,
   publicPath: '/assets/',
   port: dfltPort,
-  getDefaultModules: getDefaultModules,
-  postcss: function () {
-    return [autoprefixer];
-  }
+  getDefaultModules: getDefaultModules
 };

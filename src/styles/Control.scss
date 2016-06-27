@@ -12,14 +12,14 @@
 }
 
 .range {
-  -webkit-appearance: none;
+  appearance: none;
   position: relative;
   outline: none;
   // display: none;
 
   &::-webkit-slider-thumb {
     $size: 1rem;
-    -webkit-appearance: none;
+    appearance: none;
     border: 1px solid $foreground;
     border-radius: $size / 2;
     width: $size;
@@ -38,7 +38,7 @@
 }
 
 .input {
-  -webkit-appearance: none;
+  appearance: none;
   border: 0;
   background-color: transparent;
   color: $foreground;
