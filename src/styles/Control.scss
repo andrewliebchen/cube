@@ -1,5 +1,8 @@
+@import "helpers";
+
 .control {
   user-select: none;
+  color: $foreground;
 }
 
 .label {

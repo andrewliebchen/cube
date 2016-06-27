@@ -1,4 +1,8 @@
+@import "helpers";
+
 .wrapper {
+  // background-color: $background;
+  background-image: radial-gradient($background 50%, darken($background, 10%));
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -8,4 +12,5 @@
   position: absolute;
   bottom: 1rem;
   left: 1rem;
+  z-index: 2;
 }

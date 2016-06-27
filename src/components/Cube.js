@@ -32,12 +32,11 @@ const Cube = (props) => {
         style={{marginLeft: `-${interaxial}px`}}>
         <Primative {...props} anaglyphRotate={anaglyphRotate}/>
       </div>
-      {props.anaglyph &&
-        <div
-          className={styles.anaglyphRight}
-          style={{marginLeft: `${interaxial}px`}}>
-          <Primative {...props}  anaglyphRotate={anaglyphRotate * -1}/>
-        </div>}
+      <div
+        className={styles.anaglyphRight}
+        style={{marginLeft: `${interaxial}px`}}>
+        <Primative {...props}  anaglyphRotate={anaglyphRotate * -1}/>
+      </div>
     </div>
   );
 }
