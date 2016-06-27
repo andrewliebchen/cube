@@ -8,17 +8,16 @@ $anaglyphOffset: 50px;
 
 .anaglyphContainer {
   position: relative;
-  -webkit-mix-blend-mode: multiply;
 }
 
 .anaglyphLeft {
   composes: anaglyphContainer;
-  margin-left: -($anaglyphOffset);
+  border-color: cyan;
 }
 
 .anaglyphRight {
   composes: anaglyphContainer;
-  margin-left: $anaglyphOffset;
+  border-color: red;
 }
 
 .cube {
@@ -33,13 +32,16 @@ $anaglyphOffset: 50px;
 
 .anaglyphCube {
   composes: cube;
+  border-color: inherit;
+  -webkit-mix-blend-mode: multiply;
 }
 
 .face {
   position: absolute;
   height: $size;
   width: $size;
-  border: 2px solid;
+  border: 1px solid;
+  border-color: inherit;
 }
 
 .frontFace {

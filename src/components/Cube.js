@@ -3,14 +3,14 @@ import styles from '../styles/Cube.scss';
 
 const Primative = (props) => {
   const className = props.anaglyph ? styles.anaglyphCube : styles.cube;
-  const style = {
-    transform: `translate3d(-50%, -50%, 0) rotateX(-${props.orbitX}deg) rotateY(${props.zAngle}deg) rotateZ(${props.orbitY}deg)`
-  };
-  
+  const rotateX = `rotateX(-${props.orbitX}deg)`;
+  const rotateY = `rotateY(${props.zAngle + props.anaglyphRotate}deg)`;
+  const rotateZ = `rotateZ(${props.orbitY}deg)`;
+
   return (
     <div
       className={className}
-      style={style}>
+      style={{transform: `translate3d(-50%, -50%, 0) ${rotateX} ${rotateY} ${rotateZ}`}}>
       <div className={styles.frontFace}/>
       <div className={styles.backFace}/>
       <div className={styles.leftFace}/>
@@ -22,16 +22,27 @@ const Primative = (props) => {
 }
 
 
-const Cube = (props) =>
-  <div className={styles.cubes}>
-    <div className={props.anaglyph && styles.anaglyphLeft}>
-      <Primative {...props}/>
+const Cube = (props) => {
+  const interaxial = props.zoom / 30;
+  const anaglyphRotate = Math.atan(props.zoom / interaxial);
+  // const zoom = props.zoom / 500;
+
+  return (
+    <div className={styles.cubes}>
+      <div
+        className={props.anaglyph && styles.anaglyphLeft}
+        style={{marginLeft: `-${interaxial}px`}}>
+        <Primative {...props} anaglyphRotate={anaglyphRotate}/>
+      </div>
+      {props.anaglyph &&
+        <div
+          className={props.anaglyph && styles.anaglyphRight}
+          style={{marginLeft: `${interaxial}px`}}>
+          <Primative {...props}  anaglyphRotate={anaglyphRotate * -1}/>
+        </div>}
     </div>
-    {props.anaglyph &&
-      <div className={props.anaglyph && styles.anaglyphRight}>
-        <Primative {...props}/>
-      </div>}
-  </div>
+  );
+}
 
 Cube.propTypes = {
   orbitX: PropTypes.number,
