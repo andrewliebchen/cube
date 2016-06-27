@@ -3,9 +3,45 @@
 .control {
   user-select: none;
   color: $foreground;
+  font-size: 1.5em;
 }
 
 .label {
-  display: block;
-  font-size: 0.75rem;
+  font-weight: 200;
+  display: inline-block;
+  width: 5rem;
+}
+
+.range {
+  -webkit-appearance: none;
+  position: relative;
+  outline: none;
+  // display: none;
+
+  &::-webkit-slider-thumb {
+    $size: 1rem;
+    -webkit-appearance: none;
+    border: 1px solid $foreground;
+    border-radius: $size / 2;
+    width: $size;
+    height: $size;
+    margin-top: -($size / 2);
+    background-color: $background;
+    cursor: ew-resize;
+  }
+
+  &::-webkit-slider-runnable-track {
+    height: 1px;
+    width: 100%;
+    // background-image: linear-gradient(to right, #00e7d1, #d334d5);
+    background-color: $foreground;
+  }
+}
+
+.input {
+  -webkit-appearance: none;
+  border: 0;
+  background-color: transparent;
+  color: $foreground;
+  width: 4rem;
 }

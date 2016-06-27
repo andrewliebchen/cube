@@ -5,13 +5,15 @@ const Control = (props) =>
   <div className={styles.control}>
     <label className={styles.label}>{props.label}</label>
     <input
-      type="range"
+      type="number"
+      className={styles.input}
       value={props.value}
       onChange={props.action}
       min={props.min}
       max={props.max}/>
     <input
-      type="number"
+      type="range"
+      className={styles.range}
       value={props.value}
       onChange={props.action}
       min={props.min}

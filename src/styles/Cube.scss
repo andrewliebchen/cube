@@ -1,6 +1,6 @@
-$size: 100px;
-$translate: translateZ(50px);
-$anaglyphOffset: 50px;
+$size: 10vw;
+$anaglyphOffset: $size / 2;
+$translate: translateZ($anaglyphOffset);
 
 .anaglyphContainer {
   position: relative;
