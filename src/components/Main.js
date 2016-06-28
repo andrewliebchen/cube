@@ -39,18 +39,7 @@ export default class Main extends Component {
               action={this.handleControlAction.bind(null, 'zoom')}
               min={200}
               max={2000}/>
-            <Control
-              label="Pan X"
-              value={panX}
-              action={this.handleControlAction.bind(null, 'panX')}
-              min={0}
-              max={100}/>
-            <Control
-              label="Pan Y"
-              value={panY}
-              action={this.handleControlAction.bind(null, 'panY')}
-              min={0}
-              max={100}/>
+            <tr className={styles.spacer}/>
             <Control
               label="Orbit X"
               value={orbitX}
@@ -69,6 +58,19 @@ export default class Main extends Component {
               action={this.handleControlAction.bind(null, 'rotate')}
               min={0}
               max={360}/>
+            <tr className={styles.spacer}/>
+            <Control
+              label="Pan X"
+              value={panX}
+              action={this.handleControlAction.bind(null, 'panX')}
+              min={0}
+              max={100}/>
+            <Control
+              label="Pan Y"
+              value={panY}
+              action={this.handleControlAction.bind(null, 'panY')}
+              min={0}
+              max={100}/>
           </tbody>
         </table>
       </div>
