@@ -20,6 +20,7 @@
   position: absolute;
   outline: none;
   top: 50%;
+  min-width: 15vw;
 
   &::-webkit-slider-thumb {
     $size: 1rem;
@@ -45,4 +46,11 @@
   border: 0;
   background-color: transparent;
   color: $foreground;
+  outline: 0;
+  border-radius: 3px;
+  padding-left: 0.25rem;
+
+  &:focus {
+    box-shadow: 0 0 0 1px $foreground;
+  }
 }

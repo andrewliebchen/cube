@@ -52,12 +52,6 @@ export default class Main extends Component {
               min={0}
               max={100}/>
             <Control
-              label="Rotate"
-              value={zAngle}
-              action={this.handleControlAction.bind(null, 'rotate')}
-              min={0}
-              max={360}/>
-            <Control
               label="Orbit X"
               value={orbitX}
               action={this.handleControlAction.bind(null, 'orbitX')}
@@ -67,6 +61,12 @@ export default class Main extends Component {
               label="Orbit Y"
               value={orbitY}
               action={this.handleControlAction.bind(null, 'orbitY')}
+              min={-90}
+              max={90}/>
+            <Control
+              label="Orbit Z"
+              value={zAngle}
+              action={this.handleControlAction.bind(null, 'rotate')}
               min={0}
               max={360}/>
           </tbody>
