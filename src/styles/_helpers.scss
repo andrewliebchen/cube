@@ -11,3 +11,13 @@ $accent: #115768;
   background-size: $size $size;
   background-position: 0 0, $position $position;
 }
+
+@mixin hatch($color-1: $accent, $color-2: $background, $size: 3rem) {
+  background-image: repeating-linear-gradient(
+    45deg,
+    $color-1,
+    $color-1 $size/2,
+    $color-2 $size/2,
+    $color-2 $size
+  );
+}

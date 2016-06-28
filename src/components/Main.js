@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Overlay from './Overlay';
 import Scene from './Scene';
 import Cube from './Cube';
 import Control from './Control';
@@ -23,6 +24,7 @@ export default class Main extends Component {
     const panHorizon = 100 - panY;
     return (
       <div className={styles.wrapper}>
+        <Overlay/>
         <Scene
           {...this.state}
           panHorizon={panHorizon}

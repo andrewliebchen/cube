@@ -1,0 +1,22 @@
+@import "helpers";
+
+.overlay {
+  @include dots(10px);
+  background-color: rgba($background, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  padding: 2rem;
+  font-weight: bold;
+  font-size: 2rem;
+}
